@@ -29,27 +29,24 @@ body {
 }
 
 @keyframes pulse {
-  0%,100% {opacity: .4}
-  50% {opacity: 1}
+  0%,100% { opacity: .4 }
+  50% { opacity: 1 }
 }
 
 .bg {
   position: absolute;
   inset: 0;
-  background: url("https://images.unsplash.com/photo-1500530855697-b586d89ba3ee") center/cover;
-  filter: blur(6px) brightness(.4);
+  background: url("assets/bg.gif") center/cover no-repeat;
 }
 
 .card {
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%,-50%);
+  transform: translate(-50%, -50%);
   padding: 40px 50px;
-  background: rgba(0,0,0,.6);
-  backdrop-filter: blur(10px);
   border-radius: 20px;
-  box-shadow: 0 0 40px rgba(0,255,255,.35);
+  box-shadow: 0 0 40px rgba(0,255,255,.45);
   text-align: center;
   color: white;
 }
@@ -75,4 +72,15 @@ body {
 .links a:hover {
   background: cyan;
   color: black;
+}
+
+.hide {
+  animation: fadeOut .6s forwards;
+}
+
+@keyframes fadeOut {
+  to {
+    opacity: 0;
+    visibility: hidden;
+  }
 }
