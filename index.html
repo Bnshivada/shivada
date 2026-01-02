@@ -1,160 +1,34 @@
 <!DOCTYPE html>
-<html lang="tr">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shivada | Profile</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        body, html {
-            margin: 0; padding: 0; height: 100%;
-            font-family: 'Inter', sans-serif;
-            color: white; overflow: hidden;
-        }
-
-        /* Arka Plan Görseli */
-        .bg-image {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: url('https://images.alphacoders.com/131/1310636.jpeg') no-repeat center center/cover;
-            z-index: -1;
-            filter: brightness(0.4);
-        }
-
-        /* Kararma Katmanı */
-        .overlay {
-            position: fixed;
-            inset: 0;
-            background: radial-gradient(circle, transparent 20%, rgba(0,0,0,0.8) 100%);
-            z-index: -1;
-        }
-
-        /* Cam Kart Stili */
-        .glass-card {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(15px);
-            -webkit-backdrop-filter: blur(15px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 20px;
-        }
-
-        .profile-img {
-            width: 80px; height: 80px;
-            border-radius: 50%;
-            border: 2px solid rgba(255,255,255,0.2);
-            object-fit: cover;
-        }
-
-        /* Müzik Çalar Animasyonu */
-        .progress-bar {
-            width: 0%; height: 100%;
-            background: white;
-            transition: width 0.1s linear;
-        }
-
-        /* Giriş Ekranı */
-        #enter-screen {
-            position: fixed; inset: 0; z-index: 999;
-            background: #000; display: flex;
-            align-items: center; justify-content: center;
-            cursor: pointer; transition: 1s ease;
-        }
-    </style>
+<meta charset="UTF-8">
+<title>Shivada</title>
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <div id="enter-screen" onclick="startExperience()">
-        <p class="text-white tracking-[0.5em] text-sm animate-pulse">BAŞLATMAK İÇİN TIKLA</p>
-    </div>
+<div id="enter">
+  <h1>Click to Enter</h1>
+</div>
 
-    <div class="bg-image"></div>
-    <div class="overlay"></div>
+<div class="bg"></div>
 
-    <div class="flex flex-col items-center justify-center min-h-screen p-4">
-        
-        <div class="text-center mb-8">
-            <h1 class="text-4xl font-bold tracking-widest mb-1" style="text-shadow: 0 0 15px rgba(255,255,255,0.5);">SHIVADA</h1>
-            <p class="text-slate-300 text-sm font-light">Mehmet Eren S. (Prof Mc Player :D)</p>
-            <div class="flex items-center justify-center gap-2 mt-2 text-slate-400 text-xs">
-                <i class="fa-solid fa-location-dot"></i>
-                <span>Aydın Nazilli, Turkey</span>
-            </div>
-        </div>
+<div class="card">
+  <img src="https://i.imgur.com/7k12EPD.png" class="avatar">
+  <h2>Shivada</h2>
+  <p>Developer • Designer • Creator</p>
 
-        <div class="glass-card p-4 flex items-center gap-4 w-full max-w-sm mb-8 transition hover:scale-105">
-            <img src="https://i.scdn.co/image/ab67616d0000b2737604588970868297b47e5830" class="w-12 h-12 rounded-lg" alt="cover">
-            <div class="flex-1">
-                <p class="text-[10px] text-blue-400 font-bold uppercase">Dinliyor</p>
-                <p class="text-sm font-bold truncate">Sen Bilmezsin</p>
-                <p class="text-xs text-slate-400">Dedublüman</p>
-            </div>
-            <i class="fab fa-spotify text-green-400 text-xl"></i>
-        </div>
+  <div class="links">
+    <a href="#">Discord</a>
+    <a href="#">GitHub</a>
+    <a href="#">Website</a>
+  </div>
+</div>
 
-        <div class="flex gap-6 text-2xl mb-12">
-            <a href="#" class="hover:scale-125 transition"><i class="fab fa-steam"></i></a>
-            <a href="#" class="hover:scale-125 transition"><i class="fab fa-instagram"></i></a>
-            <a href="#" class="hover:scale-125 transition"><i class="fab fa-discord"></i></a>
-            <a href="#" class="hover:scale-125 transition"><i class="fab fa-twitch"></i></a>
-            <a href="#" class="hover:scale-125 transition"><i class="fa-solid fa-skull"></i></a>
-        </div>
+<audio id="music" loop>
+  <source src="https://files.catbox.moe/8k1n5z.mp3" type="audio/mpeg">
+</audio>
 
-        <div class="glass-card p-6 w-full max-w-xl flex items-center gap-6">
-            <div class="bg-white/10 p-4 rounded-xl">
-                <i class="fa-solid fa-music text-xl"></i>
-            </div>
-            <div class="flex-1">
-                <div class="flex justify-between text-[10px] text-slate-400 mb-2">
-                    <span>dv</span>
-                    <span id="time">0:00 / 1:39</span>
-                </div>
-                <div class="h-1 w-full bg-white/10 rounded-full overflow-hidden">
-                    <div id="progress" class="progress-bar"></div>
-                </div>
-            </div>
-            <div class="flex gap-4 text-sm">
-                <i class="fa-solid fa-backward-step cursor-pointer opacity-60 hover:opacity-100"></i>
-                <i id="play-icon" class="fa-solid fa-play cursor-pointer hover:scale-110"></i>
-                <i class="fa-solid fa-forward-step cursor-pointer opacity-60 hover:opacity-100"></i>
-            </div>
-        </div>
-
-    </div>
-
-    <audio id="bg-music" src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"></audio>
-
-    <script>
-        const music = document.getElementById('bg-music');
-        const progress = document.getElementById('progress');
-        const timeText = document.getElementById('time');
-
-        function startExperience() {
-            document.getElementById('enter-screen').style.opacity = '0';
-            setTimeout(() => {
-                document.getElementById('enter-screen').style.display = 'none';
-                music.play();
-            }, 1000);
-        }
-
-        music.ontimeupdate = function() {
-            const perc = (music.currentTime / music.duration) * 100;
-            progress.style.width = perc + "%";
-            
-            let currentMin = Math.floor(music.currentTime / 60);
-            let currentSec = Math.floor(music.currentTime % 60);
-            timeText.innerText = `${currentMin}:${currentSec < 10 ? '0'+currentSec : currentSec} / 1:39`;
-        };
-
-        document.getElementById('play-icon').onclick = function() {
-            if (music.paused) {
-                music.play();
-                this.classList.replace('fa-play', 'fa-pause');
-            } else {
-                music.pause();
-                this.classList.replace('fa-pause', 'fa-play');
-            }
-        };
-    </script>
+<script src="script.js"></script>
 </body>
 </html>
