@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dijital Kimlik | [Adın]</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #0f172a; }
+        .bento-card {
+            background: rgba(30, 41, 59, 0.5);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+        .bento-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(255, 255, 255, 0.3);
+            box-shadow: 0 10px 30px -10px rgba(0,0,0,0.5);
+        }
+        .gradient-text {
+            background: linear-gradient(90deg, #38bdf8, #818cf8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+    </style>
+</head>
+<body class="text-slate-200 antialiased selection:bg-blue-500/30">
+
+    <main class="max-w-4xl mx-auto py-12 px-6">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+            
+            <div class="md:col-span-2 p-10 rounded-[2rem] bento-card flex flex-col justify-between min-h-[300px]">
+                <div>
+                    <span class="px-3 py-1 bg-blue-500/10 text-blue-400 rounded-full text-xs font-medium uppercase tracking-wider">Müsait</span>
+                    <h1 class="text-4xl md:text-5xl font-extrabold mt-6 leading-tight">
+                        Merhaba, ben <span class="gradient-text">[Adın]</span>
+                    </h1>
+                </div>
+                <p class="text-slate-400 text-lg mt-4">Dijital dünyada iz bırakıyorum. Kod yazıyor, tasarlıyor ve yeni şeyler deniyorum.</p>
+            </div>
+
+            <div class="grid grid-cols-2 md:grid-cols-1 gap-4">
+                <a href="#" class="p-6 rounded-[2rem] bento-card flex items-center justify-center hover:bg-[#1DA1F2]/10 group">
+                    <span class="font-bold group-hover:text-[#1DA1F2]">X / Twitter</span>
+                </a>
+                <a href="#" class="p-6 rounded-[2rem] bento-card flex items-center justify-center hover:bg-white/10 group">
+                    <span class="font-bold group-hover:text-white text-slate-300">GitHub</span>
+                </a>
+            </div>
+
+            <div class="p-8 rounded-[2rem] bento-card flex flex-col items-center justify-center text-center">
+                <p class="text-xs uppercase text-slate-500 tracking-[0.2em] mb-2">Konum</p>
+                <p class="text-xl font-semibold">İstanbul, TR</p>
+            </div>
+
+            <div class="md:col-span-2 p-8 rounded-[2rem] bento-card relative overflow-hidden group">
+                <div class="relative z-10">
+                    <p class="text-xs uppercase text-slate-500 tracking-[0.2em] mb-2">Son Proje</p>
+                    <h3 class="text-2xl font-bold italic group-hover:underline">"Kişisel Kimlik Projesi"</h3>
+                </div>
+                <div class="absolute -right-10 -bottom-10 w-40 h-40 bg-blue-600/20 blur-[50px] group-hover:bg-blue-600/40 transition-all"></div>
+            </div>
+
+            <div class="md:col-span-3 p-8 rounded-[2rem] bento-card flex flex-col md:flex-row items-center justify-between gap-6">
+                <h2 class="text-2xl font-bold">Hadi beraber bir şeyler yapalım!</h2>
+                <a href="mailto:merhaba@email.com" class="px-8 py-4 bg-white text-black font-bold rounded-2xl hover:bg-slate-200 transition-colors">
+                    E-posta Gönder
+                </a>
+            </div>
+
+        </div>
+
+        <footer class="mt-12 text-center text-slate-600 text-sm">
+            © 2026 • [Adın] tarafından sıfırdan kodlandı.
+        </footer>
+    </main>
+
+</body>
+</html>
