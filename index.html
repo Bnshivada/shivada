@@ -3,190 +3,158 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dijital Kimlik | [Adın]</title>
-    
+    <title>Shivada | Profile</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
     <style>
-        :root {
-            --bg-dark: #070a13;
-            --card-bg: rgba(15, 23, 42, 0.6);
-            --accent-blue: #38bdf8;
-            --accent-purple: #818cf8;
-            --border: rgba(255, 255, 255, 0.08);
+        body, html {
+            margin: 0; padding: 0; height: 100%;
+            font-family: 'Inter', sans-serif;
+            color: white; overflow: hidden;
         }
 
-        body { 
-            font-family: 'Inter', sans-serif; 
-            background-color: var(--bg-dark);
-            color: #f1f5f9;
-            overflow: hidden; /* Giriş yapana kadar kaydırmayı engeller */
+        /* Arka Plan Görseli */
+        .bg-image {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: url('https://images.alphacoders.com/131/1310636.jpeg') no-repeat center center/cover;
+            z-index: -1;
+            filter: brightness(0.4);
         }
 
-        /* Giriş Ekranı (Overlay) */
-        #enter-screen {
+        /* Kararma Katmanı */
+        .overlay {
             position: fixed;
             inset: 0;
-            z-index: 100;
-            background-color: var(--bg-dark);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: all 1s cubic-bezier(0.19, 1, 0.22, 1);
-        }
-
-        .screen-hidden {
-            opacity: 0;
-            visibility: hidden;
-            transform: scale(1.1);
-        }
-
-        /* Bento Kart Stilleri */
-        .bento-card {
-            background: var(--card-bg);
-            backdrop-filter: blur(12px);
-            border: 1px solid var(--border);
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
-
-        .bento-card:hover {
-            transform: translateY(-8px);
-            border-color: rgba(255, 255, 255, 0.2);
-            box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.7);
-        }
-
-        .gradient-text {
-            background: linear-gradient(90deg, var(--accent-blue), var(--accent-purple));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        /* Animasyonlar */
-        @keyframes pulse-soft {
-            0%, 100% { opacity: 1; transform: scale(1); }
-            50% { opacity: 0.7; transform: scale(1.05); }
-        }
-
-        .animate-enter {
-            animation: pulse-soft 2s infinite;
-        }
-
-        /* Arka Plan Işık Süzmesi */
-        .glow-bg {
-            position: fixed;
-            top: 50%; left: 50%;
-            width: 500px; height: 500px;
-            background: radial-gradient(circle, rgba(56, 189, 248, 0.05) 0%, transparent 70%);
-            transform: translate(-50%, -50%);
-            pointer-events: none;
+            background: radial-gradient(circle, transparent 20%, rgba(0,0,0,0.8) 100%);
             z-index: -1;
+        }
+
+        /* Cam Kart Stili */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+        }
+
+        .profile-img {
+            width: 80px; height: 80px;
+            border-radius: 50%;
+            border: 2px solid rgba(255,255,255,0.2);
+            object-fit: cover;
+        }
+
+        /* Müzik Çalar Animasyonu */
+        .progress-bar {
+            width: 0%; height: 100%;
+            background: white;
+            transition: width 0.1s linear;
+        }
+
+        /* Giriş Ekranı */
+        #enter-screen {
+            position: fixed; inset: 0; z-index: 999;
+            background: #000; display: flex;
+            align-items: center; justify-content: center;
+            cursor: pointer; transition: 1s ease;
         }
     </style>
 </head>
-<body class="antialiased selection:bg-blue-500/30">
+<body>
 
-    <div id="enter-screen" onclick="startSite()">
-        <div class="text-center group">
-            <h2 class="text-slate-500 text-xs uppercase tracking-[0.6em] mb-6 opacity-60">Sistem Başlatılıyor</h2>
-            <p class="text-white text-3xl md:text-5xl font-extrabold tracking-tighter animate-enter">
-                Profili Görmek İçin <span class="gradient-text">Tıkla..</span>
-            </p>
-        </div>
+    <div id="enter-screen" onclick="startExperience()">
+        <p class="text-white tracking-[0.5em] text-sm animate-pulse">BAŞLATMAK İÇİN TIKLA</p>
     </div>
 
-    <div class="glow-bg"></div>
-    
-    <main class="max-w-4xl mx-auto py-12 px-6">
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
-            
-            <div class="md:col-span-2 p-10 rounded-[2.5rem] bento-card flex flex-col justify-between min-h-[320px]">
-                <div>
-                    <div class="flex items-center gap-2">
-                        <span class="relative flex h-3 w-3">
-                            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
-                            <span class="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
-                        </span>
-                        <span class="text-[10px] font-bold uppercase tracking-[0.2em] text-slate-400">Şu an Online</span>
-                    </div>
-                    <h1 class="text-5xl md:text-6xl font-black mt-8 leading-tight tracking-tight">
-                        Merhaba, <br>Ben <span class="gradient-text">[Adın]</span>
-                    </h1>
-                </div>
-                <p class="text-slate-400 text-lg max-w-sm font-medium">Dijital kimlik oluşturuyorum, kod yazıyorum ve modern web dünyasını keşfediyorum.</p>
-            </div>
+    <div class="bg-image"></div>
+    <div class="overlay"></div>
 
-            <div class="grid grid-cols-2 md:grid-cols-1 gap-5">
-                <a href="#" class="p-6 rounded-[2rem] bento-card flex flex-col items-center justify-center gap-3 hover:bg-[#1DA1F2]/10 group transition-all">
-                    <i class="fab fa-twitter text-2xl group-hover:text-[#1DA1F2]"></i>
-                    <span class="font-bold text-xs tracking-widest uppercase">X / Twitter</span>
-                </a>
-                <a href="#" class="p-6 rounded-[2rem] bento-card flex flex-col items-center justify-center gap-3 hover:bg-white/10 group transition-all">
-                    <i class="fab fa-github text-2xl group-hover:text-white"></i>
-                    <span class="font-bold text-xs tracking-widest uppercase">GitHub</span>
-                </a>
+    <div class="flex flex-col items-center justify-center min-h-screen p-4">
+        
+        <div class="text-center mb-8">
+            <h1 class="text-4xl font-bold tracking-widest mb-1" style="text-shadow: 0 0 15px rgba(255,255,255,0.5);">SHIVADA</h1>
+            <p class="text-slate-300 text-sm font-light">Mehmet Eren S. (Prof Mc Player :D)</p>
+            <div class="flex items-center justify-center gap-2 mt-2 text-slate-400 text-xs">
+                <i class="fa-solid fa-location-dot"></i>
+                <span>Aydın Nazilli, Turkey</span>
             </div>
-
-            <div class="p-8 rounded-[2rem] bento-card flex flex-col items-center justify-center text-center">
-                <div class="w-12 h-12 mb-4 bg-slate-800/50 rounded-2xl flex items-center justify-center border border-white/5">
-                    <i class="fa-solid fa-location-arrow text-blue-400"></i>
-                </div>
-                <p class="text-[10px] uppercase text-slate-500 tracking-[0.3em] mb-1">Konum</p>
-                <p class="text-xl font-bold">İstanbul, TR</p>
-            </div>
-
-            <div class="md:col-span-2 p-8 rounded-[2rem] bento-card relative overflow-hidden group cursor-pointer">
-                <div class="relative z-10 flex flex-col h-full justify-between">
-                    <div>
-                        <p class="text-[10px] uppercase text-slate-500 tracking-[0.3em] mb-2">Güncel Durum</p>
-                        <h3 class="text-3xl font-bold italic group-hover:text-blue-400 transition-colors">"Dijital Kimlik Kodlanıyor"</h3>
-                    </div>
-                    <div class="mt-8 flex gap-3">
-                        <span class="text-[9px] px-3 py-1 bg-white/5 rounded-full border border-white/10 font-bold uppercase tracking-widest">HTML5</span>
-                        <span class="text-[9px] px-3 py-1 bg-white/5 rounded-full border border-white/10 font-bold uppercase tracking-widest">Tailwind</span>
-                    </div>
-                </div>
-                <div class="absolute -right-16 -bottom-16 w-64 h-64 bg-blue-600/5 blur-[80px] group-hover:bg-blue-600/15 transition-all duration-700"></div>
-            </div>
-
-            <div class="md:col-span-3 p-8 rounded-[2.5rem] bento-card flex flex-col md:flex-row items-center justify-between gap-6 bg-gradient-to-br from-blue-500/5 to-transparent border-blue-500/10">
-                <div class="text-center md:text-left">
-                    <h2 class="text-2xl font-bold">Bir mesaj uzağındayım.</h2>
-                    <p class="text-slate-400">Yeni fikirler ve iş birlikleri için bekliyorum.</p>
-                </div>
-                <a href="mailto:merhaba@email.com" class="px-10 py-4 bg-white text-black font-black rounded-2xl hover:bg-blue-400 hover:text-white hover:scale-105 active:scale-95 transition-all duration-300">
-                    Bana Ulaş
-                </a>
-            </div>
-
         </div>
 
-        <footer class="mt-12 text-center">
-            <p class="text-slate-600 text-[10px] uppercase tracking-[0.4em]">
-                © 2026 • [ADIN] • SIFIRDAN KODLANDI
-            </p>
-        </footer>
-    </main>
+        <div class="glass-card p-4 flex items-center gap-4 w-full max-w-sm mb-8 transition hover:scale-105">
+            <img src="https://i.scdn.co/image/ab67616d0000b2737604588970868297b47e5830" class="w-12 h-12 rounded-lg" alt="cover">
+            <div class="flex-1">
+                <p class="text-[10px] text-blue-400 font-bold uppercase">Dinliyor</p>
+                <p class="text-sm font-bold truncate">Sen Bilmezsin</p>
+                <p class="text-xs text-slate-400">Dedublüman</p>
+            </div>
+            <i class="fab fa-spotify text-green-400 text-xl"></i>
+        </div>
 
-    <audio id="click-sound" src="https://assets.mixkit.co/active_storage/sfx/2571/2571-preview.mp3"></audio>
+        <div class="flex gap-6 text-2xl mb-12">
+            <a href="#" class="hover:scale-125 transition"><i class="fab fa-steam"></i></a>
+            <a href="#" class="hover:scale-125 transition"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="hover:scale-125 transition"><i class="fab fa-discord"></i></a>
+            <a href="#" class="hover:scale-125 transition"><i class="fab fa-twitch"></i></a>
+            <a href="#" class="hover:scale-125 transition"><i class="fa-solid fa-skull"></i></a>
+        </div>
+
+        <div class="glass-card p-6 w-full max-w-xl flex items-center gap-6">
+            <div class="bg-white/10 p-4 rounded-xl">
+                <i class="fa-solid fa-music text-xl"></i>
+            </div>
+            <div class="flex-1">
+                <div class="flex justify-between text-[10px] text-slate-400 mb-2">
+                    <span>dv</span>
+                    <span id="time">0:00 / 1:39</span>
+                </div>
+                <div class="h-1 w-full bg-white/10 rounded-full overflow-hidden">
+                    <div id="progress" class="progress-bar"></div>
+                </div>
+            </div>
+            <div class="flex gap-4 text-sm">
+                <i class="fa-solid fa-backward-step cursor-pointer opacity-60 hover:opacity-100"></i>
+                <i id="play-icon" class="fa-solid fa-play cursor-pointer hover:scale-110"></i>
+                <i class="fa-solid fa-forward-step cursor-pointer opacity-60 hover:opacity-100"></i>
+            </div>
+        </div>
+
+    </div>
+
+    <audio id="bg-music" src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"></audio>
 
     <script>
-        function startSite() {
-            // Ses Çal
-            const sound = document.getElementById('click-sound');
-            sound.play();
+        const music = document.getElementById('bg-music');
+        const progress = document.getElementById('progress');
+        const timeText = document.getElementById('time');
 
-            // Ekranı Kapat
-            const screen = document.getElementById('enter-screen');
-            screen.classList.add('screen-hidden');
-            
-            // Kaydırmayı Aç
-            document.body.style.overflow = 'auto';
-
-            console.log("Dijital Kimlik Yüklendi.");
+        function startExperience() {
+            document.getElementById('enter-screen').style.opacity = '0';
+            setTimeout(() => {
+                document.getElementById('enter-screen').style.display = 'none';
+                music.play();
+            }, 1000);
         }
+
+        music.ontimeupdate = function() {
+            const perc = (music.currentTime / music.duration) * 100;
+            progress.style.width = perc + "%";
+            
+            let currentMin = Math.floor(music.currentTime / 60);
+            let currentSec = Math.floor(music.currentTime % 60);
+            timeText.innerText = `${currentMin}:${currentSec < 10 ? '0'+currentSec : currentSec} / 1:39`;
+        };
+
+        document.getElementById('play-icon').onclick = function() {
+            if (music.paused) {
+                music.play();
+                this.classList.replace('fa-play', 'fa-pause');
+            } else {
+                music.pause();
+                this.classList.replace('fa-pause', 'fa-play');
+            }
+        };
     </script>
 </body>
 </html>
