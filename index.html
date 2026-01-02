@@ -4,76 +4,139 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dijital Kimlik | [Adın]</title>
+    
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
     <style>
-        body { font-family: 'Inter', sans-serif; background-color: #0f172a; }
+        /* CSS Değişkenleri ve Temel Ayarlar */
+        :root {
+            --bg-dark: #0f172a;
+            --card-bg: rgba(30, 41, 59, 0.45);
+            --accent-blue: #38bdf8;
+            --accent-purple: #818cf8;
+            --border: rgba(255, 255, 255, 0.08);
+        }
+
+        body { 
+            font-family: 'Inter', sans-serif; 
+            background-color: var(--bg-dark);
+            color: #f1f5f9;
+        }
+
+        /* Bento Kart Özel Stilleri */
         .bento-card {
-            background: rgba(30, 41, 59, 0.5);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            transition: all 0.3s ease;
+            background: var(--card-bg);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--border);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
+
         .bento-card:hover {
-            transform: translateY(-5px);
-            border-color: rgba(255, 255, 255, 0.3);
-            box-shadow: 0 10px 30px -10px rgba(0,0,0,0.5);
+            transform: translateY(-8px);
+            border-color: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.6);
         }
+
+        /* Havalı Yazı Efekti */
         .gradient-text {
-            background: linear-gradient(90deg, #38bdf8, #818cf8);
+            background: linear-gradient(90deg, var(--accent-blue), var(--accent-purple));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
+
+        /* Giriş Animasyonu */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        main {
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+
+        /* Custom Hover Parıltısı */
+        .glow {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(600px circle at var(--x) var(--y), rgba(255,255,255,0.06), transparent 40%);
+            pointer-events: none;
+        }
     </style>
 </head>
-<body class="text-slate-200 antialiased selection:bg-blue-500/30">
+<body class="antialiased selection:bg-blue-500/30 min-h-screen flex items-center">
 
     <main class="max-w-4xl mx-auto py-12 px-6">
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
             
-            <div class="md:col-span-2 p-10 rounded-[2rem] bento-card flex flex-col justify-between min-h-[300px]">
+            <div class="md:col-span-2 p-10 rounded-[2.5rem] bento-card flex flex-col justify-between min-h-[320px]">
                 <div>
-                    <span class="px-3 py-1 bg-blue-500/10 text-blue-400 rounded-full text-xs font-medium uppercase tracking-wider">Müsait</span>
-                    <h1 class="text-4xl md:text-5xl font-extrabold mt-6 leading-tight">
-                        Merhaba, ben <span class="gradient-text">[Adın]</span>
+                    <div class="flex items-center gap-2">
+                        <span class="relative flex h-3 w-3">
+                            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                            <span class="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
+                        </span>
+                        <span class="text-xs font-medium uppercase tracking-widest text-slate-400">Yeni Projelere Açık</span>
+                    </div>
+                    <h1 class="text-4xl md:text-6xl font-extrabold mt-8 leading-tight tracking-tight">
+                        Ben <span class="gradient-text">[Adın]</span>
                     </h1>
                 </div>
-                <p class="text-slate-400 text-lg mt-4">Dijital dünyada iz bırakıyorum. Kod yazıyor, tasarlıyor ve yeni şeyler deniyorum.</p>
+                <p class="text-slate-400 text-lg max-w-md">Sıfırdan kodlamayı, modern tasarımları ve dijital dünyada fark yaratmayı seviyorum.</p>
             </div>
 
-            <div class="grid grid-cols-2 md:grid-cols-1 gap-4">
-                <a href="#" class="p-6 rounded-[2rem] bento-card flex items-center justify-center hover:bg-[#1DA1F2]/10 group">
-                    <span class="font-bold group-hover:text-[#1DA1F2]">X / Twitter</span>
+            <div class="grid grid-cols-2 md:grid-cols-1 gap-5">
+                <a href="#" class="p-6 rounded-[2rem] bento-card flex flex-col items-center justify-center gap-3 hover:bg-[#1DA1F2]/10 group text-center">
+                    <i class="fab fa-twitter text-2xl group-hover:text-[#1DA1F2]"></i>
+                    <span class="font-bold text-sm">Twitter</span>
                 </a>
-                <a href="#" class="p-6 rounded-[2rem] bento-card flex items-center justify-center hover:bg-white/10 group">
-                    <span class="font-bold group-hover:text-white text-slate-300">GitHub</span>
+                <a href="#" class="p-6 rounded-[2rem] bento-card flex flex-col items-center justify-center gap-3 hover:bg-white/10 group text-center">
+                    <i class="fab fa-github text-2xl group-hover:text-white"></i>
+                    <span class="font-bold text-sm">GitHub</span>
                 </a>
             </div>
 
             <div class="p-8 rounded-[2rem] bento-card flex flex-col items-center justify-center text-center">
-                <p class="text-xs uppercase text-slate-500 tracking-[0.2em] mb-2">Konum</p>
-                <p class="text-xl font-semibold">İstanbul, TR</p>
+                <div class="w-12 h-12 mb-4 bg-slate-800 rounded-2xl flex items-center justify-center border border-white/5">
+                    <i class="fa-solid fa-location-dot text-blue-400"></i>
+                </div>
+                <p class="text-xs uppercase text-slate-500 tracking-widest mb-1">Lokasyon</p>
+                <p class="text-xl font-bold">İstanbul, TR</p>
             </div>
 
             <div class="md:col-span-2 p-8 rounded-[2rem] bento-card relative overflow-hidden group">
-                <div class="relative z-10">
-                    <p class="text-xs uppercase text-slate-500 tracking-[0.2em] mb-2">Son Proje</p>
-                    <h3 class="text-2xl font-bold italic group-hover:underline">"Kişisel Kimlik Projesi"</h3>
+                <div class="relative z-10 flex flex-col h-full justify-between">
+                    <div>
+                        <p class="text-xs uppercase text-slate-500 tracking-widest mb-2">Geliştirdiğim Bir Şey</p>
+                        <h3 class="text-3xl font-bold italic group-hover:text-blue-400 transition-colors">"Digital Identity v1.0"</h3>
+                    </div>
+                    <div class="mt-8 flex gap-2">
+                        <span class="text-[10px] px-2 py-1 bg-white/5 rounded-md border border-white/5 uppercase">HTML</span>
+                        <span class="text-[10px] px-2 py-1 bg-white/5 rounded-md border border-white/5 uppercase">Tailwind</span>
+                        <span class="text-[10px] px-2 py-1 bg-white/5 rounded-md border border-white/5 uppercase">CSS</span>
+                    </div>
                 </div>
-                <div class="absolute -right-10 -bottom-10 w-40 h-40 bg-blue-600/20 blur-[50px] group-hover:bg-blue-600/40 transition-all"></div>
+                <div class="absolute -right-16 -bottom-16 w-64 h-64 bg-blue-600/10 blur-[80px] group-hover:bg-blue-600/20 transition-all duration-700"></div>
             </div>
 
-            <div class="md:col-span-3 p-8 rounded-[2rem] bento-card flex flex-col md:flex-row items-center justify-between gap-6">
-                <h2 class="text-2xl font-bold">Hadi beraber bir şeyler yapalım!</h2>
-                <a href="mailto:merhaba@email.com" class="px-8 py-4 bg-white text-black font-bold rounded-2xl hover:bg-slate-200 transition-colors">
-                    E-posta Gönder
+            <div class="md:col-span-3 p-8 rounded-[2.5rem] bento-card flex flex-col md:flex-row items-center justify-between gap-6 border-blue-500/20 bg-blue-500/5">
+                <div class="text-center md:text-left">
+                    <h2 class="text-2xl font-bold">Bir projen mi var?</h2>
+                    <p class="text-slate-400">Hadi tanışalım ve neler yapabileceğimizi konuşalım.</p>
+                </div>
+                <a href="mailto:merhaba@email.com" class="px-10 py-4 bg-white text-black font-extrabold rounded-2xl hover:scale-105 active:scale-95 transition-all shadow-xl shadow-white/10">
+                    Bana Yazın <i class="fa-regular fa-paper-plane ml-2"></i>
                 </a>
             </div>
 
         </div>
 
-        <footer class="mt-12 text-center text-slate-600 text-sm">
-            © 2026 • [Adın] tarafından sıfırdan kodlandı.
+        <footer class="mt-12 text-center">
+            <p class="text-slate-600 text-sm tracking-tight">
+                © 2026 • <span class="hover:text-slate-400 transition-colors cursor-pointer">[Adın]</span>
+            </p>
         </footer>
     </main>
 
