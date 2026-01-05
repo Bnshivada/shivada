@@ -7,6 +7,9 @@
 
   <link rel="icon" href="data:,">
 
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500;700&display=swap" rel="stylesheet">
+
   <style>
     * {
       margin: 0;
@@ -19,15 +22,58 @@
       height: 100%;
       background: #000;
       overflow: hidden;
+      font-family: 'Montserrat', sans-serif;
     }
 
     canvas {
       display: block;
     }
+
+    /* ORTA YAZI */
+    .center-text {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 64px;
+      letter-spacing: 6px;
+      font-weight: 500;
+      color: #fff;
+      text-shadow:
+        0 0 10px rgba(255,255,255,0.4),
+        0 0 30px rgba(255,255,255,0.2),
+        0 0 60px rgba(255,255,255,0.15);
+      animation: glowPulse 3s ease-in-out infinite;
+      pointer-events: none;
+      user-select: none;
+    }
+
+    @keyframes glowPulse {
+      0% {
+        text-shadow:
+          0 0 8px rgba(255,255,255,0.3),
+          0 0 20px rgba(255,255,255,0.15);
+        opacity: 0.85;
+      }
+      50% {
+        text-shadow:
+          0 0 14px rgba(255,255,255,0.6),
+          0 0 45px rgba(255,255,255,0.3),
+          0 0 80px rgba(255,255,255,0.2);
+        opacity: 1;
+      }
+      100% {
+        text-shadow:
+          0 0 8px rgba(255,255,255,0.3),
+          0 0 20px rgba(255,255,255,0.15);
+        opacity: 0.85;
+      }
+    }
   </style>
 </head>
 <body>
   <canvas id="snow"></canvas>
+  <div class="center-text">SHIVADA</div>
 
   <script>
     const canvas = document.getElementById('snow');
@@ -79,12 +125,12 @@
       }
       ctx.fill();
 
-      /* GLOW NABIZ */
+      /* GLOW */
       glow.pulse += 0.05;
       glow.strength *= 0.94;
 
-      const radius = 120 + Math.sin(glow.pulse) * 30;
-      const alpha = glow.strength * 0.18;
+      const radius = 140 + Math.sin(glow.pulse) * 35;
+      const alpha = glow.strength * 0.2;
 
       if (alpha > 0.01) {
         const g = ctx.createRadialGradient(
