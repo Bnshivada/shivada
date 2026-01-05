@@ -3,7 +3,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Shivada | Cardd </title>
+  <title>Shivada | Cardd</title>
+
+  <!-- favicon tamamen kapalı -->
+  <link rel="icon" href="data:,">
+
   <style>
     * {
       margin: 0;
@@ -58,7 +62,7 @@
       for (let i = 0; i < SNOW_COUNT; i++) {
         const f = snowflakes[i];
         ctx.moveTo(f.x, f.y);
-        ctx.arc(f.x, f.y, f.r, 0, Math.PI * 2, true);
+        ctx.arc(f.x, f.y, f.r, 0, Math.PI * 2);
       }
 
       ctx.fill();
