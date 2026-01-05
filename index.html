@@ -37,7 +37,6 @@
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
     }
-
     resize();
     window.addEventListener('resize', resize);
 
@@ -54,57 +53,58 @@
       });
     }
 
-    /* MOUSE GLOW */
-    const mouse = {
-      x: 0,
-      y: 0,
-      alpha: 0
+    /* CANLI GLOW */
+    const glow = {
+      x: canvas.width / 2,
+      y: canvas.height / 2,
+      strength: 0,
+      pulse: 0
     };
 
-    window.addEventListener('mousemove', (e) => {
-      mouse.x = e.clientX;
-      mouse.y = e.clientY;
-      mouse.alpha = 1; // hareket edince parlasın
+    window.addEventListener('mousemove', e => {
+      glow.x = e.clientX;
+      glow.y = e.clientY;
+      glow.strength = 1;
     });
 
     function drawSnow() {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
       /* KAR */
-      ctx.fillStyle = 'rgba(255, 255, 255, 0.8)';
+      ctx.fillStyle = 'rgba(255,255,255,0.8)';
       ctx.beginPath();
-      for (let i = 0; i < SNOW_COUNT; i++) {
-        const f = snowflakes[i];
+      for (let f of snowflakes) {
         ctx.moveTo(f.x, f.y);
         ctx.arc(f.x, f.y, f.r, 0, Math.PI * 2);
       }
       ctx.fill();
 
-      /* MOUSE PARLAMA */
-      if (mouse.alpha > 0.01) {
-        const glow = ctx.createRadialGradient(
-          mouse.x, mouse.y, 0,
-          mouse.x, mouse.y, 150
+      /* GLOW NABIZ */
+      glow.pulse += 0.05;
+      glow.strength *= 0.94;
+
+      const radius = 120 + Math.sin(glow.pulse) * 30;
+      const alpha = glow.strength * 0.18;
+
+      if (alpha > 0.01) {
+        const g = ctx.createRadialGradient(
+          glow.x, glow.y, 0,
+          glow.x, glow.y, radius
         );
+        g.addColorStop(0, `rgba(255,255,255,${alpha})`);
+        g.addColorStop(0.5, `rgba(255,255,255,${alpha * 0.4})`);
+        g.addColorStop(1, 'rgba(255,255,255,0)');
 
-        glow.addColorStop(0, `rgba(255,255,255,${0.2 * mouse.alpha})`);
-        glow.addColorStop(0.5, `rgba(255,255,255,${0.06 * mouse.alpha})`);
-        glow.addColorStop(1, 'rgba(255,255,255,0)');
-
-        ctx.fillStyle = glow;
+        ctx.fillStyle = g;
         ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-        mouse.alpha *= 0.90; // mouse durunca yavaşça sönsün
       }
 
       moveSnow();
     }
 
     function moveSnow() {
-      for (let i = 0; i < SNOW_COUNT; i++) {
-        const f = snowflakes[i];
+      for (let f of snowflakes) {
         f.y += f.d;
-
         if (f.y > canvas.height) {
           f.y = -5;
           f.x = Math.random() * canvas.width;
