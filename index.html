@@ -3,145 +3,167 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>HACKER MODE</title>
-  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
+  <title>Shivada | Derin Lore</title>
   <style>
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-      font-family: 'Share Tech Mono', monospace;
+      font-family: 'Segoe UI', system-ui, sans-serif;
     }
 
     body {
-      background: black;
-      color: #00ff66;
-      height: 100vh;
-      overflow: hidden;
+      min-height: 100vh;
+      background: radial-gradient(circle at top, #0f172a, #020617 70%);
+      color: #cbd5f5;
+      overflow-x: hidden;
     }
 
-    /* Matrix arka plan */
-    canvas {
+    .noise {
       position: fixed;
-      top: 0;
-      left: 0;
-      z-index: -1;
+      inset: 0;
+      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200"><filter id="n"><feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="4" stitchTiles="stitch"/></filter><rect width="200" height="200" filter="url(%23n)" opacity="0.03"/></svg>');
+      pointer-events: none;
+      z-index: 0;
     }
 
     .container {
-      height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
+      position: relative;
+      z-index: 1;
+      max-width: 1100px;
+      margin: auto;
+      padding: 80px 24px;
+    }
+
+    header {
       text-align: center;
+      margin-bottom: 80px;
     }
 
-    h1 {
-      font-size: 3rem;
-      letter-spacing: 4px;
-      text-shadow: 0 0 10px #00ff66;
+    header h1 {
+      font-size: clamp(2.2rem, 5vw, 3.5rem);
+      font-weight: 700;
+      letter-spacing: 1px;
+      color: #e5e7eb;
     }
 
-    p {
-      margin-top: 15px;
-      opacity: 0.8;
+    header h1 span {
+      color: #7c3aed;
     }
 
-    .terminal {
-      margin-top: 40px;
-      background: rgba(0,0,0,0.7);
-      border: 1px solid #00ff66;
-      padding: 20px;
-      width: 90%;
-      max-width: 600px;
-      text-align: left;
-      box-shadow: 0 0 15px #00ff6644;
+    header p {
+      margin-top: 18px;
+      font-size: 1.05rem;
+      color: #9aa4c7;
+      max-width: 700px;
+      margin-inline: auto;
+      line-height: 1.7;
     }
 
-    .line::before {
-      content: "> ";
+    .divider {
+      width: 120px;
+      height: 1px;
+      background: linear-gradient(to right, transparent, #7c3aed, transparent);
+      margin: 32px auto 0;
     }
 
-    .blink {
-      animation: blink 1s infinite;
+    section {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 24px;
     }
 
-    @keyframes blink {
-      0%, 50% { opacity: 1; }
-      51%, 100% { opacity: 0; }
+    .card {
+      background: linear-gradient(180deg, rgba(30,41,59,0.65), rgba(2,6,23,0.9));
+      border: 1px solid rgba(124,58,237,0.15);
+      border-radius: 16px;
+      padding: 28px;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.45);
+      transition: transform .3s ease, box-shadow .3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 30px 70px rgba(0,0,0,0.6);
+    }
+
+    .card h2 {
+      font-size: 1.3rem;
+      margin-bottom: 14px;
+      color: #e0e7ff;
+    }
+
+    .card p {
+      font-size: 0.95rem;
+      line-height: 1.7;
+      color: #a5b4fc;
     }
 
     footer {
-      position: fixed;
-      bottom: 10px;
-      width: 100%;
+      margin-top: 100px;
       text-align: center;
-      font-size: 0.8rem;
-      opacity: 0.5;
+      font-size: 0.85rem;
+      color: #6b7280;
+    }
+
+    footer span {
+      color: #7c3aed;
     }
   </style>
 </head>
 <body>
+  <div class="noise"></div>
 
-<canvas id="matrix"></canvas>
+  <div class="container">
+    <header>
+      <h1>Hoşgeldin <span>Shivada</span></h1>
+      <p>
+        Burası bir site değil. Bir başlangıç noktası.
+        Kayıtlara geçmeyen olayların, yarım kalmış kodların ve
+        sessizce silinmiş geçmişlerin kesiştiği bir boşluk.
+      </p>
+      <div class="divider"></div>
+    </header>
 
-<div class="container">
-  <div class="welcome">
-    Hoşgeldin <span>Shivada</span> :)<br>
-    <small>Bugün Ne Yapmak İstersin ?</small>
+    <section>
+      <div class="card">
+        <h2>📖 Kayıp Kayıtlar</h2>
+        <p>
+          Her sistem bir gün unutmak ister.
+          Ama bazı loglar silinmez.
+          Sadece daha derine gömülür.
+        </p>
+      </div>
+
+      <div class="card">
+        <h2>🕯️ Sessiz Protokol</h2>
+        <p>
+          En tehlikeli şey gürültü değil, sessizliktir.
+          Çünkü kimse bakmazken her şey değişir.
+        </p>
+      </div>
+
+      <div class="card">
+        <h2>🌑 Derin Katman</h2>
+        <p>
+          Yüzey güven verir.
+          Derinlik gerçeği.
+          Buraya inen herkes aynı çıkmaz.
+        </p>
+      </div>
+
+      <div class="card">
+        <h2>⚙️ Kırık Sistem</h2>
+        <p>
+          Kusursuz çalışan bir sistem yalandır.
+          Çatlaklar kim olduğunu gösterir.
+        </p>
+      </div>
+    </section>
+
+    <footer>
+      <p>© 2026 <span>Shivada</span> — Her şey kaydedilmez, bazıları hatırlanır.</p>
+    </footer>
   </div>
-
-  <div class="terminal">
-    <div class="line">Ancient systems are awakening...</div>
-    <div class="line">Echoes from forgotten networks detected</div>
-    <div class="line">Memory fragments syncing...</div>
-    <div class="line">Access level: <span style="color:#7CFFB2">OBSERVER</span></div>
-    <div class="line blink">_</div>
-  </div>
-</div>
-
-<footer>
-  © 2026 | Hacker Index
-</footer>
-
-<script>
-  const canvas = document.getElementById('matrix');
-  const ctx = canvas.getContext('2d');
-
-  canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
-
-  const letters = '01ABCDEFGHIJKLMNOPQRSTUVWXYZ#$%&@';
-  const fontSize = 14;
-  const columns = canvas.width / fontSize;
-  const drops = Array(Math.floor(columns)).fill(1);
-
-  function drawMatrix() {
-    ctx.fillStyle = 'rgba(0, 0, 0, 0.1)';
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-    ctx.fillStyle = '#00ff66';
-    ctx.font = fontSize + 'px monospace';
-
-    for (let i = 0; i < drops.length; i++) {
-      const text = letters.charAt(Math.floor(Math.random() * letters.length));
-      ctx.fillText(text, i * fontSize, drops[i] * fontSize);
-
-      if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
-        drops[i] = 0;
-      }
-      drops[i]++;
-    }
-  }
-
-  setInterval(drawMatrix, 33);
-
-  window.addEventListener('resize', () => {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-  });
-</script>
-
 </body>
 </html>
